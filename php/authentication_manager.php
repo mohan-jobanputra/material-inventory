@@ -25,11 +25,13 @@
 
 		function authenticate($username, $password)
 		{
-			$ulogin->Authenticate($_POST['user'],  $_POST['pwd']);
+			$ulogin->Authenticate($username, $password);
 			if ($ulogin->IsAuthSuccess()) {
-				return true;
+				$returnArray = array('did_authenticate' => true );
+				return json_encode($returnArray);
 			} else {
-				return false;
+				$returnArray = array('did_authenticate' => false );
+				return json_encode($returnArray);
 			}
 		}
 

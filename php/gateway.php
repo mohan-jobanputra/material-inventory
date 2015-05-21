@@ -6,6 +6,7 @@ require_once("product_manager.php");
 require_once("transfer_manager.php");
 require_once("store_manager.php");
 require_once("stock_manager.php");
+require_once("authentication_manager.php");
 
 header("Cache-Control: no-cache,no-store");
 
@@ -26,11 +27,11 @@ if ($_GET["sender"] == "salesController") {
     }
 
     if ($_GET["action"] == "create") {
-        $data = $manager->createSale($_POST['customer-name'], $_POST['store-name'], $_POST['product-name'], $_POST['product-color'], $_POST['quantity'], $_POST['date'], $_POST['imei']);
+        $data = $manager->createSale($_POST['customer-name'], $_POST['store-name'], $_POST['product-name'], $_POST['product-color'], $_POST['quantity'], $_POST['date'], $_POST['imei'], $_POST['rate']);
     }
 
     if ($_GET["action"] == "update") {
-        $data = $manager->updateSale($_POST['customer-name'], $_POST['store-name'], $_POST['product-name'], $_POST['quantity'], $_POST['date'], $_POST['imei']);
+        $data = $manager->updateSale($_POST['customer-name'], $_POST['store-name'], $_POST['product-name'], $_POST['product-color'], $_POST['quantity'], $_POST['date'], $_POST['imei'], $_POST['rate']);
     }
 }
 
@@ -50,11 +51,11 @@ if ($_GET["sender"] == "purchasesController") {
     }
 
     if ($_GET["action"] == "create") {
-        $manager->createPurchase($_POST['store-name'], $_POST['product-name'], $_POST['product-color'], $_POST['quantity'], $_POST['date'], $_POST['cost-price']);
+        $manager->createPurchase($_POST['store-name'], $_POST['product-name'], $_POST['product-color'], $_POST['quantity'], $_POST['date'], $_POST['rate']);
     }
 
     if ($_GET["action"] == "update") {
-        $manager->updatePurchase($_POST['store-name'], $_POST['product-name'], $_POST['quantity'], $_POST['date'], $_POST['cost-price']);
+        $manager->updatePurchase($_POST['store-name'], $_POST['product-name'], $_POST['product-color'], $_POST['quantity'], $_POST['date'], $_POST['rate']);
     }
 }
 
@@ -104,11 +105,11 @@ if ($_GET["sender"] == "productsController") {
     }
 
     if ($_GET["action"] == "create") {
-        $manager->createProduct($_POST['product-name'], $_POST['product-color'], $_POST['selling-price']);
+        $manager->createProduct($_POST['product-name'], $_POST['product-color'], $_POST['optimal-selling-price']);
     }
 
     if ($_GET["action"] == "update") {
-        $manager->updateProduct($_POST['product-id'], $_POST['product-name'], $_POST['product-color'], $_POST['cost-price'], $_POST['selling-price']);
+        $manager->updateProduct($_POST['product-id'], $_POST['product-name'], $_POST['product-color'], $_POST['optimal-selling-price']);
     }
 }
 
@@ -163,5 +164,18 @@ if ($_GET["sender"] == "autocompleteController") {
         print(json_encode($data));
     }
 }
+
+//
+//      AUTHENTICATOR
+//
+
+if ($_GET["sender"] == "authenticationController") {
+    if ($_GET["action"] == "login") {
+        $manager = new AuthenticationManager();
+        $data = $manager->authenticate($_POST['username'], $_POST['password']);
+        print($data);
+    }
+}
+
 
 ?>

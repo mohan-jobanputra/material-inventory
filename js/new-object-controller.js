@@ -1,12 +1,6 @@
 billingApp.controller('newObjectController', function() {
 
-    var self = this;
-
-    /*
-     *  THE VARIABLES
-     */
-
-    self.cards = [{
+    this.cards = [{
         index: 1,
         header: "New Purchase",
         formInfo: {
@@ -15,24 +9,34 @@ billingApp.controller('newObjectController', function() {
         },
         inputsInfo: [{
             icon: "product_name",
-            type: "text",
             placeholder: "Product",
-            name: "product-name"
+            name: "product-name",
+            template: 'input-product.html',
+            autocomplete: true
         }, {
             icon: "color",
-            type: "text",
             placeholder: "Color",
-            name: "product-color"
+            name: "product-color",
+            template: 'input-color.html',
+            autocomplete: true
         }, {
             icon: "quantity",
             type: "number",
             placeholder: "Quantity",
-            name: "quantity"
+            name: "quantity",
+            autocomplete: false
         }, {
             icon: "date",
             type: "date",
             placeholder: "Date",
-            name: "date"
+            name: "date",
+            autocomplete: false
+        }, {
+            icon: "cost_price",
+            type: "number",
+            placeholder: "Rate",
+            name: "rate",
+            autocomplete: false
         }]
     }, {
         index: 2,
@@ -44,38 +48,53 @@ billingApp.controller('newObjectController', function() {
         inputsInfo: [{
             icon: "person",
             type: "text",
-            placeholder: "Customer, Name",
-            name: "customer-name"
+            placeholder: "Customer Name",
+            name: "customer-name",
+            autocomplete: false
         }, {
             icon: "store_name",
-            type: "text",
-            placeholder: "Store, Name",
-            name: "store-name"
+            placeholder: "Store Name",
+            name: "store-name",
+            template: "input-store.html",
+            autocomplete: true
         }, {
             icon: "product_name",
             type: "text",
             placeholder: "Product",
-            name: "product-name"
+            name: "product-name",
+            template: 'input-product.html',
+            autocomplete: true
         }, {
             icon: "color",
             type: "text",
             placeholder: "Color",
-            name: "product-color"
+            name: "product-color",
+            template: 'input-color.html',
+            autocomplete: true
         }, {
             icon: "quantity",
             type: "number",
             placeholder: "Quantity",
-            name: "quantity"
+            name: "quantity",
+            autocomplete: false
         }, {
             icon: "date",
             type: "date",
             placeholder: "Date",
-            name: "date"
+            name: "date",
+            autocomplete: false
         }, {
             icon: "imei",
             type: "integer",
             placeholder: "IMEI",
-            name: "imei"
+            name: "imei",
+            autocomplete: false
+        }, {
+            icon: "selling_price",
+            type: "number",
+            placeholder: "Rate",
+            name: "rate",
+            autocomplete: false
         }]
     }, {
         index: 3,
@@ -88,32 +107,42 @@ billingApp.controller('newObjectController', function() {
             icon: "product_name",
             type: "text",
             placeholder: "Product Name",
-            name: "product-name"
+            name: "product-name",
+            template: 'input-product.html',
+            autocomplete: true
         }, {
             icon: "color",
             type: "text",
             placeholder: "Color",
-            name: "product-color"
+            name: "product-color",
+            template: 'input-color.html',
+            autocomplete: true
         }, {
             icon: "store_name",
             type: "text",
-            placeholder: "From, Store",
-            name: "from-store"
+            placeholder: "From Store",
+            name: "from-store",
+            template: "input-store.html",
+            autocomplete: true
         }, {
             icon: "store_name",
             type: "text",
-            placeholder: "To, Store",
-            name: "to-store"
+            placeholder: "To Store",
+            name: "to-store",
+            template: "input-store.html",
+            autocomplete: true
         }, {
             icon: "quantity",
             type: "number",
             placeholder: "Quantity",
-            name: "quantity"
+            name: "quantity",
+            autocomplete: false
         }, {
             icon: "date",
             type: "date",
             placeholder: "Date",
-            name: "date"
+            name: "date",
+            autocomplete: false
         }]
     }, {
         index: 4,
@@ -126,22 +155,16 @@ billingApp.controller('newObjectController', function() {
             icon: "product_name",
             type: "text",
             placeholder: "Product Name",
-            name: "product-name"
+            name: "product-name",
+            template: 'input-product.html',
+            autocomplete: true
         }, {
             icon: "color",
             type: "text",
             placeholder: "Color",
-            name: "product-color"
-        }, {
-            icon: "cost_price",
-            type: "number",
-            placeholder: "Cost, Price",
-            name: "cost-price"
-        }, {
-            icon: "selling_price",
-            type: "number",
-            placeholder: "Selling, Price",
-            name: "selling-price"
+            name: "product-color",
+            template: 'input-color.html',
+            autocomplete: true
         }]
     }, {
         index: 5,
@@ -153,18 +176,21 @@ billingApp.controller('newObjectController', function() {
         inputsInfo: [{
             icon: "store_name",
             type: "text",
-            placeholder: "Store, Name",
-            name: "store-name"
+            placeholder: "Store Name",
+            name: "store-name",
+            autocomplete: false
         }, {
             icon: "phone",
             type: "text",
-            placeholder: "Phone, Number",
-            name: "store-phone-number"
+            placeholder: "Phone Number",
+            name: "store-phone-number",
+            autocomplete: false
         }, {
             icon: "place",
             type: "text",
             placeholder: "Location",
-            name: "store-address"
+            name: "store-address",
+            autocomplete: false
         }]
     }, ];
 });

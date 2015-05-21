@@ -1,4 +1,4 @@
-#overlay {
+.overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -12,11 +12,11 @@
     height: 100%;
 }
 
-.new-menu-card-container {
+.centered-card-container {
     min-width: 50%;
 }
 
-.new-menu-card {
+.default-card {
     background: #fff;
     margin: 20px;
     padding: 20px;

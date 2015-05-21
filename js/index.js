@@ -49,10 +49,11 @@ billingApp.config(function($mdThemingProvider, $mdIconProvider) {
         .icon("search", "icons/24px/ic_search_24px.svg", 24)
         .icon("color", "icons/24px/ic_palette_24px.svg", 24)
         .icon("date", "icons/24px/ic_access_time_24px.svg", 24)
+        .icon("password", "icons/24px/ic_lock_24px.svg", 24)
+        .icon("username", "icons/24px/ic_account_circle_24px.svg", 24)
         .icon("phone", "icons/24px/ic_phone_24px.svg", 24);
 
 
     var themeProvider = $mdThemingProvider.theme('default');
-    themeProvider.primaryPalette('blue-grey');
-    themeProvider.accentPalette('teal');
+    themeProvider.accentPalette('grey');
 });

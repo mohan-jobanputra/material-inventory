@@ -1,59 +1,60 @@
 billingApp.run(['$templateCache', function($templateCache) {
 
-    $templateCache.put('autocomplete-template-product.html',
+    $templateCache.put('input-product.html',
         '<md-autocomplete' +
         ' md-autoselect="true"' +
-        ' name="product"' +
+        ' name="{{inputInfo.name}}"' +
         ' md-selected-item="mCtrl.selectedItem"' +
         ' md-search-text="mCtrl.searchText"' +
         ' md-items="item in mCtrl.querySearch(\'products\', \'product\')"' +
         ' md-item-text="item.product"' +
-        ' md-label="Search" flex>' +
+        ' md-floating-label="{{inputInfo.placeholder}}">' +
+        ' style="margin-left: 36px; padding-top: 24px;"' +
         '	<span' +
         ' 		md-highlight-text="mCtrl.searchText">{{item.product}}' +
         '	</span>' +
         '</md-autocomplete>'
     );
 
-    $templateCache.put('autocomplete-template-stock.html',
+    $templateCache.put('input-stock.html',
         '<md-autocomplete' +
         ' md-autoselect="true"' +
-        ' name="stock"' +
+        ' name="{{inputInfo.name}}"' +
         ' md-selected-item="mCtrl.selectedItem"' +
         ' md-search-text="mCtrl.searchText"' +
         ' md-items="item in mCtrl.querySearch(\'stocks\', \'product\')"' +
         ' md-item-text="item.product"' +
-        ' md-label="Search" flex>' +
+        ' md-label="{{inputInfo.placeholder}}" flex>' +
         '<span' +
         ' md-highlight-text="mCtrl.searchText">{{item.product}} ({{item.color}}) | {{item.store_name}}: {{item.quantity}}' +
         '</span>' +
         '</md-autocomplete>'
     );
 
-    $templateCache.put('autocomplete-template-store.html',
+    $templateCache.put('input-store.html',
         '<md-autocomplete' +
         ' md-autoselect="true"' +
-        ' name="store"' +
+        ' name="{{inputInfo.name}}"' +
         ' md-selected-item="mCtrl.selectedItem"' +
         ' md-search-text="mCtrl.searchText"' +
         ' md-items="item in mCtrl.querySearch(\'stores\', \'store_name\')"' +
         ' md-item-text="item.store_name"' +
-        ' md-label="Search" flex>' +
+        ' md-floating-label="{{inputInfo.placeholder}}" flex>' +
         '<span' +
         ' md-highlight-text="mCtrl.searchText">{{item.store_name}}' +
         '</span>' +
         '</md-autocomplete>'
     );
 
-    $templateCache.put('autocomplete-template-color.html',
+    $templateCache.put('input-color.html',
         '<md-autocomplete' +
         ' md-autoselect="true"' +
-        ' name="color"' +
+        ' name="{{inputInfo.name}}"' +
         ' md-selected-item="mCtrl.selectedItem"' +
         ' md-search-text="mCtrl.searchText"' +
         ' md-items="item in mCtrl.querySearch(\'colors\', \'color\')"' +
         ' md-item-text="item.color"' +
-        ' md-label="Search" flex>' +
+        ' md-floating-label="{{inputInfo.placeholder}}" flex>' +
         '<span' +
         ' md-highlight-text="mCtrl.searchText">{{item.color}}' +
         '</span>' +
