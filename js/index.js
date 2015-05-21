@@ -18,6 +18,17 @@ billingApp.filter("sanitize", ['$sce', function($sce) {
     };
 }]);
 
+billingApp.directive('includeReplace', function() {
+    return {
+        require: 'ngInclude',
+        restrict: 'A',
+        /* optional */
+        link: function(scope, el, attrs) {
+            el.replaceWith(el.children());
+        }
+    };
+});
+
 /*
  * Configuring the default Material Theme
  */
@@ -44,106 +55,4 @@ billingApp.config(function($mdThemingProvider, $mdIconProvider) {
     var themeProvider = $mdThemingProvider.theme('default');
     themeProvider.primaryPalette('blue-grey');
     themeProvider.accentPalette('teal');
-});
-
-billingApp.controller('stocksController', function() {
-
-    var self = this;
-
-    function stocksArray() {
-        var uri = encodeURI('php/gateway.php?sender=stocksController&action=list');
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET", uri, false);
-        xmlhttp.send();
-        return JSON.parse(xmlhttp.responseText);
-    }
-
-    self.querySearch = function() {
-        var results = [];
-        var array = stocksArray();
-        for (var i = 0; i < array.length; i++) {
-            if (array[i].product_name.indexOf(self.searchText) > -1) {
-                results.push(array[i]);
-            }
-        }
-        console.log(results);
-        return results;
-    };
-
-    self.selectedItemChange = function(item) {
-        console.log('Selected Item: ' + item);
-    };
-
-});
-
-billingApp.controller('mainController', function() {
-
-    var self = this;
-
-    /*
-     *  THE VARIABLES
-     */
-
-    self.currentNewMenuIndex = 1;
-
-    self.isOverlayHidden = true;
-
-    self.toggleOverlay = function() {
-        self.isOverlayHidden = !self.isOverlayHidden;
-    };
-
-    self.setCurrentNewMenuIndex = function(index) {
-        self.currentNewMenuIndex = index;
-        if (index == 6) {
-            self.showActionButton = false;
-        } else {
-            self.showActionButton = true;
-        }
-    };
-
-    self.createNewItem = function(index) {
-        self.isOverlayHidden = !self.isOverlayHidden;
-    };
-
-    self.tabs = [{
-        index: 1,
-        label: 'Purchases',
-        tableId: 'purchases-table'
-    }, {
-        index: 2,
-        label: 'Sales',
-        tableId: 'sales-table'
-
-    }, {
-        index: 3,
-        label: 'Transfers',
-        tableId: 'transfers-table'
-    }, {
-        index: 4,
-        label: 'Products',
-        tableId: 'products-table'
-    }, {
-        index: 5,
-        label: 'Stores',
-        tableId: 'stores-table'
-    }, {
-        index: 6,
-        label: 'Stocks',
-        tableId: ''
-    }, ];
-
-    /*
-     *  THE FUNCTIONS
-     */
-
-    $(document).ready(function() {
-        var $form = $('.new-form');
-        $form.submit(function() {
-            $.post($(this).attr('action'), $(this).serialize(), function(response) {
-                self.toggleOverlay();
-            }, 'json');
-            return false;
-        });
-    });
-
 });

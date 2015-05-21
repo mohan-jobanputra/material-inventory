@@ -11,7 +11,7 @@
 	{
 		function isAppLoggedIn()
 		{
-			print "core.php:11: isAppLogin Function is untested. Expect errors/warnings/malfunction.";
+			print "authentication_manager.php:14: isAppLogin Function is untested. Expect errors/warnings/malfunction.";
 			return isset($_SESSION['uid'], $_SESSION['username'], $_SESSION['loggedIn']) && ($_SESSION['loggedIn']===true);
 		}
 

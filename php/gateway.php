@@ -50,11 +50,11 @@ if ($_GET["sender"] == "purchasesController") {
     }
 
     if ($_GET["action"] == "create") {
-        $manager->createPurchase($_POST['store-name'], $_POST['product-name'], $_POST['product-color'], $_POST['quantity'], $_POST['date']);
+        $manager->createPurchase($_POST['store-name'], $_POST['product-name'], $_POST['product-color'], $_POST['quantity'], $_POST['date'], $_POST['cost-price']);
     }
 
     if ($_GET["action"] == "update") {
-        $manager->updatePurchase($_POST['store-name'], $_POST['product-name'], $_POST['quantity'], $_POST['date']);
+        $manager->updatePurchase($_POST['store-name'], $_POST['product-name'], $_POST['quantity'], $_POST['date'], $_POST['cost-price']);
     }
 }
 
@@ -104,7 +104,7 @@ if ($_GET["sender"] == "productsController") {
     }
 
     if ($_GET["action"] == "create") {
-        $manager->createProduct($_POST['product-name'], $_POST['product-color'], $_POST['cost-price'], $_POST['selling-price']);
+        $manager->createProduct($_POST['product-name'], $_POST['product-color'], $_POST['selling-price']);
     }
 
     if ($_GET["action"] == "update") {
@@ -144,17 +144,23 @@ if ($_GET["sender"] == "storesController") {
 if ($_GET["sender"] == "autocompleteController") {
     if ($_GET["info"] == "stocks") {
         $manager = new StockManager();
-        if ($_GET["action"] == "suggest") {
-            $data = $manager->listStock();
-            print($data);
-        }
+        $data = $manager->autocomplete();
+        print($data);
     }
     if ($_GET["info"] == "products") {
         $manager = new ProductManager();
-        if ($_GET["action"] == "suggest") {
-            $data = $manager->listStock();
-            print($data);
-        }
+        $data = $manager->autocomplete();
+        print($data);
+    }
+    if ($_GET["info"] == "stores") {
+        $manager = new StoreManager();
+        $data = $manager->autocomplete();
+        print($data);
+    }
+    if ($_GET["info"] == "colors") {
+        $manager = new StoreManager();
+        $data = array(array("color" => "Red"), array("color" => "Yellow"), array("color" => "Blue"), array("color" => "Green"), array("color" => "Orange"), array("color" => "Pink"), array("color" => "Brown"), array("color" => "Black"), array("color" => "White"));
+        print(json_encode($data));
     }
 }
 

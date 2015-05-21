@@ -3,7 +3,7 @@ require_once('definitions.php');
 require_once('global_functions.php');
 
 Class StockManager {
-    function listStock()
+    function autocomplete()
     {
 
         $link = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
@@ -58,7 +58,7 @@ Class StockManager {
                 $stock_in_shop = ( $purchase_quantity + $transfer_recieved_quantity ) - ( $sale_quantity + $transfer_sent_quantity );
 
                 $sub_result = array();
-                $sub_result['product_name'] = $product_row['product'];
+                $sub_result['product'] = $product_row['product'];
                 $sub_result['color'] = $product_row['color'];
                 $sub_result['store_name'] = $store_row['store_name'];
                 $sub_result['quantity'] = $stock_in_shop;

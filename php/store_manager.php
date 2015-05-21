@@ -79,6 +79,27 @@ Class StoreManager
             print "Error deleting the store";
         }
     }
+
+    function autocomplete()
+    {
+
+        $link = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
+        header("Cache-Control: no-cache,no-store");
+
+        $store_query = "SELECT store_name FROM stores" ;
+
+        $store_result = $link->query($store_query)  or die("Error in the consult.." . mysqli_error($link));
+
+        $result = array();
+
+        while ($store_row = $store_result->fetch_assoc())
+        {
+            $result[] = $store_row;
+        }
+
+        return json_encode($result);
+    }
 }
 
 ?>

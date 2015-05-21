@@ -1,33 +1,53 @@
 billingApp.controller('mainController', function() {
 
-    var self = this;
-
     /*
      *  THE VARIABLES
      */
 
-    self.currentNewMenuIndex = 1;
+    this.currentNewMenuIndex = 1;
 
-    self.isOverlayHidden = true;
+    this.isOverlayHidden = true;
 
-    self.toggleOverlay = function() {
-        self.isOverlayHidden = !self.isOverlayHidden;
+    this.autocompleteResults = {};
+
+    this.querySearch = function(info, key) {
+        if (!(info in this.autocompleteResults) || this.autocompleteResults[info].length == 0) {
+            var uri = encodeURI('php/gateway.php?sender=autocompleteController&info=' + info);
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", uri, false);
+            xmlhttp.send();
+            this.autocompleteResults[info] = JSON.parse(xmlhttp.responseText);
+        }
+        var results = [];
+        var array = this.autocompleteResults[info];
+        console.log(array);
+        for (var i = 0; i < array.length; i++) {
+            if (array[i][key].toLowerCase().indexOf(this.searchText.toLowerCase()) > -1) {
+                results.push(array[i]);
+            }
+        }
+        return results;
     };
 
-    self.setCurrentNewMenuIndex = function(index) {
-        self.currentNewMenuIndex = index;
+    this.toggleOverlay = function() {
+        this.isOverlayHidden = !this.isOverlayHidden;
+        this.showActionButton = !this.showActionButton;
+    };
+
+    this.setCurrentNewMenuIndex = function(index) {
+        this.currentNewMenuIndex = index;
         if (index == 6) {
-            self.showActionButton = false;
+            this.showActionButton = false;
         } else {
-            self.showActionButton = true;
+            this.showActionButton = true;
         }
     };
 
-    self.createNewItem = function(index) {
-        self.isOverlayHidden = !self.isOverlayHidden;
+    this.createNewItem = function(index) {
+        this.isOverlayHidden = !this.isOverlayHidden;
     };
 
-    self.tabs = [{
+    this.tabs = [{
         index: 1,
         label: 'Purchases',
         tableId: 'purchases-table'
@@ -62,7 +82,7 @@ billingApp.controller('mainController', function() {
         var $form = $('.new-form');
         $form.submit(function() {
             $.post($(this).attr('action'), $(this).serialize(), function(response) {
-                self.toggleOverlay();
+                this.toggleOverlay();
             }, 'json');
             return false;
         });
@@ -152,7 +172,12 @@ billingApp.controller('mainController', function() {
             label: "Date",
             cell: "date",
             editable: "false"
-        }, ];
+        }, {
+            name: "rate",
+            label: "Rate",
+            cell: "number",
+            editable: "false"
+        }];
         initiateGrid("purchases-table", purchasesColumns, "purchasesController");
 
         //THE SALES TABLE
@@ -201,6 +226,11 @@ billingApp.controller('mainController', function() {
             label: "IMEI",
             cell: "string",
             editable: "false"
+        }, {
+            name: "selling_price",
+            label: "Selling Price",
+            cell: "number",
+            editable: "false"
         }, ];
         initiateGrid("sales-table", salesColumns, "salesController");
 
@@ -239,7 +269,7 @@ billingApp.controller('mainController', function() {
             label: "Date",
             cell: "date",
             editable: "false"
-        }, ];
+        }];
         initiateGrid("transfers-table", transferColumns, "transfersController");
 
         //THE PRODUCTS TABLE
@@ -260,13 +290,8 @@ billingApp.controller('mainController', function() {
             cell: "string",
             editable: "false"
         }, {
-            name: "cost_price",
-            label: "Cost Price",
-            cell: "number",
-            editable: "false"
-        }, {
-            name: "selling_price",
-            label: "Selling Price",
+            name: "optimal_selling_price",
+            label: "Optimal Selling Price",
             cell: "number",
             editable: "false"
         }];

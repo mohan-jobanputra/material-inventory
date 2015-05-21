@@ -12,7 +12,10 @@
   "dependencies": {
     "moment": "~2.10.2",
     "mdi": "~1.0.62-beta",
-    "ng-mfb": "~0.5.1",
+    "ng-mfb": "master",
     "angular-material": "master"
+  },
+  "resolutions": {
+    "ng-mfb": "0.5.0"
   }
 }

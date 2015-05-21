@@ -4,13 +4,13 @@ require_once('definitions.php');
 
 Class PurchaseManager
 {
-    function updatePurchase($purchase_id, $product_id, $store_id, $quantity, $date) {
+    function updatePurchase($purchase_id, $product_id, $store_id, $quantity, $date, $rate) {
         $link = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
-        if (isset($purchase_id, $product_id, $store_id, $quantity, $date))  {
+        if (isset($purchase_id, $product_id, $store_id, $quantity, $date, $rate))  {
             //The insertion
-            $statement = $link->prepare("UPDATE purchases SET product_id=?, store_id=?, quantity=?, date=? WHERE purchase_id=?");
-            $statement->bind_param("iiisi", $product_id, $store_id, $quantity, $date, $purchase_id);
+            $statement = $link->prepare("UPDATE purchases SET product_id=?, store_id=?, quantity=?, date=?, rate=? WHERE purchase_id=?");
+            $statement->bind_param("iiisii", $product_id, $store_id, $quantity, $date, $rate, $purchase_id);
             $statement->execute();
         } else {
             print "Error creating the transfer";

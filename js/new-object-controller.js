@@ -87,7 +87,7 @@ billingApp.controller('newObjectController', function() {
         inputsInfo: [{
             icon: "product_name",
             type: "text",
-            placeholder: "Product, Name",
+            placeholder: "Product Name",
             name: "product-name"
         }, {
             icon: "color",
@@ -125,7 +125,7 @@ billingApp.controller('newObjectController', function() {
         inputsInfo: [{
             icon: "product_name",
             type: "text",
-            placeholder: "Product, Name",
+            placeholder: "Product Name",
             name: "product-name"
         }, {
             icon: "color",
