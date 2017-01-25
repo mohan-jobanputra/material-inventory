@@ -37,22 +37,28 @@ module.exports = function (grunt) {
     concat: {
       backgrid: {
         options: {
-          banner: '/*!\n  <%= pkg.name %>\n' +
+          banner: '/*!\n  <%= pkg.name %> <%= pkg.version %>\n' +
             '  <%= pkg.repository.url %>\n\n' +
             '  Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
             '  Licensed under the MIT license.\n' +
             '*/\n\n' +
-            '(function (factory) {\n\n' +
-            '  // CommonJS\n' +
-            '  if (typeof exports == "object") {\n' +
-            '    module.exports = factory(module.exports,\n' +
-            '                             require("underscore"),\n' +
-            '                             require("backbone"));\n' +
-            '  }\n' +
-            '  // Browser\n' +
-            '  else factory(this, this._, this.Backbone);\n' +
-            '}(function (root, _, Backbone) {\n\n  "use strict";\n\n',
-          footer: 'return Backgrid;\n' +
+            '(function (root, factory) {\n\n' +
+            '  if (typeof define === "function" && define.amd) {\n' +
+            '    // AMD (+ global for extensions)\n' +
+            '    define(["underscore", "backbone"], function (_, Backbone) {\n' +
+            '      return (root.Backgrid = factory(_, Backbone));\n' +
+            '    });\n' +
+            '  } else if (typeof exports === "object") {\n' +
+            '    // CommonJS\n' +
+            '    var Backbone = require("backbone");\n' +
+            '    Backbone.$ = Backbone.$ || require("jquery");\n' +
+            '    module.exports = factory(require("underscore"), Backbone);\n' +
+            '  } else {\n' +
+            '    // Browser\n' +
+            '    root.Backgrid = factory(root._, root.Backbone);\n' +
+            '  }' +
+            '}(this, function (_, Backbone) {\n\n  "use strict";\n\n',
+          footer: '  return Backgrid;\n' +
             '}));'
         },
         src: [
@@ -78,42 +84,11 @@ module.exports = function (grunt) {
       }
     },
 
-    jasmine: {
-      test: {
-        version: "1.3.1",
-        src: [
-          "lib/backgrid.js",
-        ],
-        options: {
-          specs: [
-            "test/preamble.js",
-            "test/column.js",
-            "test/formatter.js",
-            "test/cell.js",
-            "test/row.js",
-            "test/body.js",
-            "test/header.js",
-            "test/footer.js",
-            "test/grid.js"
-          ],
-          template: require("grunt-template-jasmine-istanbul"),
-          templateOptions: {
-            coverage: "test/coverage/coverage.json",
-            report: {
-              type: "html",
-              options: {
-                dir: "test/coverage"
-              }
-            }
-          },
-          helpers: "vendor/js/jasmine-html.js",
-          vendor: [
-            "test/vendor/js/jquery.js",
-            "test/vendor/js/underscore.js",
-            "test/vendor/js/backbone.js",
-            "test/vendor/js/backbone-pageable.js"
-          ]
-        }
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js',
+        background: true,
+        singleRun: true
       }
     },
 
@@ -190,11 +165,11 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("grunt-recess");
   grunt.loadNpmTasks("grunt-jsduck");
-  grunt.loadNpmTasks("grunt-contrib-jasmine");
   grunt.loadNpmTasks("grunt-contrib-connect");
+  grunt.loadNpmTasks("grunt-karma");
 
   grunt.registerTask("doc", ["clean:api", "jsduck"]);
   grunt.registerTask("dist", ["concat", "uglify", "recess"]);
-  grunt.registerTask("test", ["concat", "jasmine"]);
-  grunt.registerTask("default", ["clean", "doc", "dist", "jasmine"]);
+  grunt.registerTask("test", ["concat", "karma"]);
+  grunt.registerTask("default", ["clean", "doc", "dist", "karma"]);
 };

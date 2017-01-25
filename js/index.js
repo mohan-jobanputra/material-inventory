@@ -35,23 +35,23 @@ billingApp.directive('includeReplace', function() {
 billingApp.config(function($mdThemingProvider, $mdIconProvider) {
 
     $mdIconProvider
-        .icon("expand_less", "icons/24px/ic_expand_less_24px.svg", 24)
-        .icon("expand_more", "icons/24px/ic_expand_more_24px.svg", 24)
-        .icon("add", "icons/24px/ic_add_24px.svg", 24)
-        .icon("quantity", "icons/24px/ic_content_copy_24px.svg", 24)
-        .icon("place", "icons/24px/ic_place_24px.svg", 24)
-        .icon("selling_price", "icons/24px/ic_local_offer_24px.svg", 24)
-        .icon("store_name", "icons/24px/ic_location_city_24px.svg", 24)
-        .icon("person", "icons/24px/ic_person_24px.svg", 24)
-        .icon("product_name", "icons/24px/ic_perm_device_info_24px.svg", 24)
-        .icon("imei", "icons/24px/ic_info_24px.svg", 24)
-        .icon("cost_price", "icons/24px/ic_payment_24px.svg", 24)
-        .icon("search", "icons/24px/ic_search_24px.svg", 24)
-        .icon("color", "icons/24px/ic_palette_24px.svg", 24)
-        .icon("date", "icons/24px/ic_access_time_24px.svg", 24)
-        .icon("password", "icons/24px/ic_lock_24px.svg", 24)
-        .icon("username", "icons/24px/ic_account_circle_24px.svg", 24)
-        .icon("phone", "icons/24px/ic_phone_24px.svg", 24);
+        .icon("expand_less", "icns/24px/ic_expand_less_24px.svg", 24)
+        .icon("expand_more", "icns/24px/ic_expand_more_24px.svg", 24)
+        .icon("add", "icns/24px/ic_add_24px.svg", 24)
+        .icon("quantity", "icns/24px/ic_content_copy_24px.svg", 24)
+        .icon("place", "icns/24px/ic_place_24px.svg", 24)
+        .icon("selling_price", "icns/24px/ic_local_offer_24px.svg", 24)
+        .icon("store_name", "icns/24px/ic_location_city_24px.svg", 24)
+        .icon("person", "icns/24px/ic_person_24px.svg", 24)
+        .icon("product_name", "icns/24px/ic_perm_device_info_24px.svg", 24)
+        .icon("imei", "icns/24px/ic_info_24px.svg", 24)
+        .icon("cost_price", "icns/24px/ic_payment_24px.svg", 24)
+        .icon("search", "icns/24px/ic_search_24px.svg", 24)
+        .icon("color", "icns/24px/ic_palette_24px.svg", 24)
+        .icon("date", "icns/24px/ic_access_time_24px.svg", 24)
+        .icon("password", "icns/24px/ic_lock_24px.svg", 24)
+        .icon("username", "icns/24px/ic_account_circle_24px.svg", 24)
+        .icon("phone", "icns/24px/ic_phone_24px.svg", 24);
 
 
     var themeProvider = $mdThemingProvider.theme('default');

@@ -1,5 +1,5 @@
 {
-  "name": "Billing",
+  "name": "billing",
   "version": "0.0.0",
   "license": "MIT",
   "ignore": [
@@ -10,12 +10,12 @@
     "tests"
   ],
   "dependencies": {
-    "moment": "~2.10.2",
-    "mdi": "~1.0.62-beta",
+    "moment": "master",
+    "mdi": "master",
     "ng-mfb": "master",
     "angular-material": "master"
   },
   "resolutions": {
-    "ng-mfb": "0.5.0"
+    "angular": "1.6.1"
   }
 }

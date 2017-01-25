@@ -4,22 +4,22 @@
 <head>
   <!-- Stylesheets -->
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css" />
-  <link rel="stylesheet" href="bower_components/backgrid/lib/backgrid.min.css" />
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+  <link rel="stylesheet" href="bower_components/backgrid/lib/backgrid.css" />
   <link rel="stylesheet" href="bower_components/ng-mfb/mfb/dist/mfb.css" />
   <link rel="stylesheet" href="css/index.css" />
   <!-- Javascript -->
-  <script src="bower_components/jquery/jquery.min.js" type="text/javascript"></script>
-  <script src="bower_components/angular/angular.min.js" type="text/javascript"></script>
-  <script src="bower_components/angular-resource/angular-resource.min.js" type="text/javascript"></script>
-  <script src="bower_components/angular-aria/angular-aria.min.js" type="text/javascript"></script>
-  <script src="bower_components/angular-animate/angular-animate.min.js" type="text/javascript"></script>
+  <script src="bower_components/jquery/dist/jquery.js" type="text/javascript"></script>
+  <script src="bower_components/angular/angular.js" type="text/javascript"></script>
+  <script src="bower_components/angular-resource/angular-resource.js" type="text/javascript"></script>
+  <script src="bower_components/angular-aria/angular-aria.js" type="text/javascript"></script>
+  <script src="bower_components/angular-animate/angular-animate.js" type="text/javascript"></script>
   <script src="bower_components/angular-material/angular-material.js" type="text/javascript"></script>
-  <script src="bower_components/underscore/underscore-min.js" type="text/javascript"></script>
+  <script src="bower_components/underscore/underscore.js" type="text/javascript"></script>
   <script src="bower_components/backbone/backbone.js" type="text/javascript"></script>
-  <script src="bower_components/moment/min/moment.min.js" type="text/javascript"></script>
-  <script src="bower_components/backgrid/lib/backgrid.min.js" type="text/javascript"></script>
-  <script src="bower_components/ng-mfb/mfb/dist/mfb.min.js" type="text/javascript"></script>
+  <script src="bower_components/moment/moment.js" type="text/javascript"></script>
+  <script src="bower_components/backgrid/lib/backgrid.js" type="text/javascript"></script>
+  <script src="bower_components/ng-mfb/mfb/dist/mfb.js" type="text/javascript"></script>
   <script src="bower_components/ng-mfb/src/mfb-directive.js" type="text/javascript"></script>
   <script src="js/index.js"></script>
   <script src="js/main-controller.js"></script>
@@ -29,33 +29,31 @@
 </head>
 
 <body ng-app="billingApp" layout="column">
-  <div ng-controller="mainController as mCtrl" flex>
+<div ng-controller="mainController as mCtrl" flex>
 
-     <!-- THE LOGIN LAYER -->
-     <div class="overlay" ng-init="isLoginLayerHidden=false" ng-hide="isLoginLayerHidden" layout="row" layout-align="center center">
-       <div id="login-container">
-          <div ng-click="$event.stopPropagation()" class="centered-card-container" flex>
-            <md-card class="default-card">
-            <md-card-content>
-            <h2>Login</h2>
-            <md-content>
-            <form ng-submit="mCtrl.attemptLogin()" name="login" method="post" id="login-form">
-                <md-input-container>
-                <md-content layout="row">
-                    <md-icon md-svg-src="username"></md-icon>
-                    <div ng-include src="'input-product.html'" include-replace></div>
-                </md-content>
-               <!--input type="text" placeholder="Username" name="username" required -->
-            </md-input-container>
-            <md-input-container>
-                <md-icon md-svg-src="password"></md-icon>
-                <input type="password" placeholder="Password" name="password" required>
-            </md-input-container>
-        <div layout="row">
-            <md-button class="md-raised md-primary" flex>LOGIN</md-button>
-        </div>
-    </form>
-</md-content>
+<!-- THE LOGIN LAYER -->
+<div class="overlay" ng-init="isLoginLayerHidden=false" ng-hide="isLoginLayerHidden" layout="row" layout-align="center center">
+<div id="login-container">
+<div ng-click="$event.stopPropagation()" class="centered-card-container" flex>
+<md-card class="default-card">
+<md-card-content layout="column">
+  <div flex layout="row" style="margin-bottom: 20%;">
+      <div flex></div>
+      <md-icon md-svg-src="username" style="width: 40%; height: 100%;"></md-icon>
+      <div flex></div>
+  </div>
+  <div style="" flex></div>
+  <form ng-submit="mCtrl.attemptLogin()" name="login" method="post" id="login-form" layout="column">
+    <md-input-container style="margin-top: 0; margin-bottom: 0;">
+      <input type="text" placeholder="Username" name="username" required>
+    </md-input-container>
+    <md-input-container style="margin-top: 0; margin-bottom: 0;">
+      <input type="password" placeholder="Password" name="password" required>
+    </md-input-container>
+    <div layout="row">
+      <md-button class="md-raised md-primary" type="submit" flex>LOGIN</md-button>
+    </div>
+  </form>
 </md-card-content>
 </md-card>
 </div>
@@ -119,5 +117,4 @@
 </div>
 </div>
 </body>
-
 </html>

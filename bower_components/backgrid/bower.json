@@ -1,6 +1,5 @@
 {
   "name": "backgrid",
-  "version": "0.3.5",
   "homepage": "https://github.com/wyuenho/backgrid",
   "description": "Backgrid.js is a set of components for building semantic and easily stylable data grid widgets with Backbone.",
   "authors": [
@@ -20,11 +19,11 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "api"
   ],
   "dependencies": {
-    "underscore": "~1.5.2",
-    "backbone": "~1.1.0",
-    "jquery": "~1.10.2"
+    "backbone": "~1.2.3",
+    "underscore": "^1.8.3"
   }
 }

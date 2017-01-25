@@ -15,7 +15,7 @@ billingApp.controller('mainController', ['$http', '$scope', function($http, $sco
         }
 
         $http(opts).success(function() {
-            //var result = JSON.parse(data);
+            var result = JSON.parse(data);
             var result_some = JSON.stringify({
                 did_authenticate: true,
                 is_administrator: true
@@ -34,7 +34,6 @@ billingApp.controller('mainController', ['$http', '$scope', function($http, $sco
         }).error(function(){
             console.log('Error');
         });
-
     }
 
     function loginSucceeded(isAdmin) {
@@ -199,7 +198,7 @@ billingApp.controller('mainController', ['$http', '$scope', function($http, $sco
 
         //THE PRODUCTS TABLE
         var productColumns = [
-            {name: "product_id", label: "Product ID", cell: "integer", editable: "false", editable: "false" }, 
+            { name: "product_id", label: "Product ID", cell: "integer", editable: "false", editable: "false" }, 
             { name: "product", label: "Product", cell: "string", editable: "false" }, 
             { name: "color", label: "Color", cell: "string", editable: "false" }, 
             { name: "optimal_selling_price", label: "Optimal Selling Price", cell: "number", editable: "false" }

@@ -27,7 +27,7 @@ functionalities easy.
 ## Supported browsers [[1]](#note-1):
 
 - Internet Explorer 8 [[2]](#note-2)
-- Internet Exploror 9+
+- Internet Explorer 9+
 - Chrome 4+
 - Safari 4+
 - Firefox 4+
@@ -61,7 +61,7 @@ var columns = [{
   // Defines a cell type, and ID is displayed as an integer without the ',' separating 1000s.
   cell: Backgrid.IntegerCell.extend({
     orderSeparator: ''
-  }1)
+  })
 }, {
   name: "name",
   label: "Name",

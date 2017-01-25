@@ -172,7 +172,10 @@ if ($_GET["sender"] == "autocompleteController") {
 if ($_GET["sender"] == "authenticationController") {
     if ($_GET["action"] == "login") {
         $manager = new AuthenticationManager();
-        $data = $manager->authenticate($_POST['username'], $_POST['password']);
+        $request_body = file_get_contents('php://input');
+        $req_data = json_decode($request_body);
+        print($req_data);
+        $data = $manager->authenticate($req_data['username'], $req_data['password']);
         print($data);
     }
 }

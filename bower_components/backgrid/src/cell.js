@@ -248,9 +248,16 @@ var Cell = Backgrid.Cell = Backbone.View.extend({
                     }
                   });
 
-    if (Backgrid.callByNeed(column.editable(), column, model)) $el.addClass("editable");
-    if (Backgrid.callByNeed(column.sortable(), column, model)) $el.addClass("sortable");
-    if (Backgrid.callByNeed(column.renderable(), column, model)) $el.addClass("renderable");
+    this.updateStateClassesMaybe();
+  },
+
+  updateStateClassesMaybe: function () {
+    var model = this.model;
+    var column = this.column;
+    var $el = this.$el;
+    $el.toggleClass("editable", Backgrid.callByNeed(column.editable(), column, model));
+    $el.toggleClass("sortable", Backgrid.callByNeed(column.sortable(), column, model));
+    $el.toggleClass("renderable", Backgrid.callByNeed(column.renderable(), column, model));
   },
 
   /**
@@ -258,9 +265,13 @@ var Cell = Backgrid.Cell = Backbone.View.extend({
      model's raw value for this cell's column.
   */
   render: function () {
-    this.$el.empty();
+    var $el = this.$el;
+    $el.empty();
     var model = this.model;
-    this.$el.text(this.formatter.fromRaw(model.get(this.column.get("name")), model));
+    var columnName = this.column.get("name");
+    $el.text(this.formatter.fromRaw(model.get(columnName), model));
+    $el.addClass(columnName);
+    this.updateStateClassesMaybe();
     this.delegateEvents();
     return this;
   },
@@ -783,7 +794,15 @@ var SelectCellEditor = Backgrid.SelectCellEditor = CellEditor.extend({
   },
 
   /** @property {function(Object, ?Object=): string} template */
-  template: _.template('<option value="<%- value %>" <%= selected ? \'selected="selected"\' : "" %>><%- text %></option>', null, {variable: null}),
+  template: _.template(
+    '<option value="<%- value %>" <%= selected ? \'selected="selected"\' : "" %>><%- text %></option>',
+    null,
+    {
+        variable    : null,
+        evaluate    : /<%([\s\S]+?)%>/g,
+        interpolate : /<%=([\s\S]+?)%>/g,
+        escape      : /<%-([\s\S]+?)%>/g
+    }),
 
   setOptionValues: function (optionValues) {
     this.optionValues = optionValues;
