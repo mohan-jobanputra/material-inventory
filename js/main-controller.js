@@ -6,6 +6,28 @@ billingApp.controller('mainController', ['$http', '$scope', function($http, $sco
 
     var loginForm = $('#login-form');
 
+    this.createNew = function(action, id) {
+        var form = $('#' + id);
+        var data = form.serialize();
+        console.log(data);
+        var req = $http
+            ({
+                "url": action, 
+                "data": data,
+                "method": "POST",
+                "headers": {"Content-Type": "application/x-www-form-urlencoded"}
+            })
+            .then(function(data) {
+                if (data.status == 200) {
+                    return true;
+                } else {
+                    console.log('Network error encountered while logging in. Error code: ' + data.status)
+                    return false;
+                }
+            });
+
+    }
+
     this.attemptLogin = function() {
 
         var opts = {
@@ -14,26 +36,24 @@ billingApp.controller('mainController', ['$http', '$scope', function($http, $sco
             data: loginForm.serialize()
         }
 
-        $http(opts).success(function() {
-            var result = JSON.parse(data);
-            var result_some = JSON.stringify({
-                did_authenticate: true,
-                is_administrator: true
-            });
-            var result = JSON.parse(result_some);
-
-            if (result['did_authenticate']) {
-                $scope.showActionButton = true;
-                $scope.isLoginLayerHidden = true;
-                if (result['is_administrator']) {
-                    $scope.isAdminDashLayerHidden = false;
+        var req = $http
+            .post(opts.url, opts.data)
+            .then(function(data) {
+                if (data.status == 200) {
+                    var result = data.data;
+                    if (result['did_authenticate']) {
+                        $scope.isActionButtonHidden = false;
+                        $scope.isLoginLayerHidden = true;
+                        if (result['is_administrator']) {
+                            $scope.isAdminDashLayerHidden = false;
+                        } else {
+                            $scope.isRepresentativeDashLayerHidden = false;
+                        }
+                    }
                 } else {
-                    $scope.isRepresentativeDashLayerHidden = false;
+                    console.log('Network error encountered while logging in. Error code: ' + data.status)
                 }
-            }
-        }).error(function(){
-            console.log('Error');
-        });
+            });
     }
 
     function loginSucceeded(isAdmin) {
@@ -50,25 +70,42 @@ billingApp.controller('mainController', ['$http', '$scope', function($http, $sco
 
     this.currentNewMenuIndex = 1;
 
-    this.autocompleteResults = {};
+    $scope.autocompleteResults = {};
 
-    this.querySearch = function(info, key) {
-        if (!(info in this.autocompleteResults) || this.autocompleteResults[info].length == 0) {
-            var uri = encodeURI('php/gateway.php?sender=autocompleteController&info=' + info);
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("GET", uri, false);
-            xmlhttp.send();
-            this.autocompleteResults[info] = JSON.parse(xmlhttp.responseText);
+    this.querySearch = function(key) {
+        if (!(key in $scope.autocompleteResults)) {
+            $scope.autocompleteResults[key] = {};
+            $scope.autocompleteResults[key]['available'] = false;
+            $http
+                .get(encodeURI('php/gateway.php?sender=autocompleteController&info=' + key))
+                .then(function(data) {
+                    if (data.status != 200) {
+                        return [];
+                    }
+                    $scope.autocompleteResults[key]['results'] = data.data;
+                    $scope.autocompleteResults[key]['available'] = true;
+            });
+            return [];
+        }
+        if (!($scope.autocompleteResults[key]['available'])) {
+            return [];
         }
         var results = [];
-        var array = this.autocompleteResults[info];
-        console.log(array);
+        var array = $scope.autocompleteResults[key]['results'];
         for (var i = 0; i < array.length; i++) {
-            if (array[i][key].toLowerCase().indexOf(this.searchText.toLowerCase()) > -1) {
+            if (array[i]['display'].toLowerCase().indexOf($scope.searchText.toLowerCase()) > -1) {
                 results.push(array[i]);
             }
         }
         return results;
+    };
+
+    this.shouldShow = function(i) {
+        console.log(i)
+        if (this.currentNewMenuIndex == i) {
+            return true;
+        }
+        return false;
     };
 
     this.toggleCreateItemOverlay = function() {
@@ -80,7 +117,7 @@ billingApp.controller('mainController', ['$http', '$scope', function($http, $sco
     };
 
     this.setCurrentNewMenuIndex = function(index) {
-        $scope.currentNewMenuIndex = index;
+        this.currentNewMenuIndex = index;
         if (index == 6) {
             $scope.showActionButton = false;
         } else {
@@ -125,7 +162,6 @@ billingApp.controller('mainController', ['$http', '$scope', function($http, $sco
                     var methodUrl = {
                         'update': 'php/gateway.php?sender=' + controllerName + '&action=update'
                     };
-                    console.log(method, model, options);
                     if (methodUrl && methodUrl[method.toLowerCase()]) {
                         options = options || {};
                         options.url = methodUrl[method.toLowerCase()];
@@ -214,5 +250,4 @@ billingApp.controller('mainController', ['$http', '$scope', function($http, $sco
         ];
         initiateGrid("stores-table", storeColumns, "storesController");
     });
-
 }]);

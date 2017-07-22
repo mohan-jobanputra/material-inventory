@@ -62,6 +62,7 @@ Class StoreManager
             //Update purchase ID, so as to maintain continuancy.
             $counter_query = "SET @count = 0; UPDATE `stores` SET `store_id` = @count:= @count + 1; ALTER TABLE `stores` AUTO_INCREMENT = 1;";
             $link->multi_query($counter_query);
+            print '{"success": "true"}';
         } else {
             print "Error creating the store";
         }
@@ -89,13 +90,13 @@ Class StoreManager
 
         $store_query = "SELECT store_name FROM stores" ;
 
-        $store_result = $link->query($store_query)  or die("Error in the consult.." . mysqli_error($link));
+        $store_result = $link->query($store_query) or die("Error in the consult.." . mysqli_error($link));
 
         $result = array();
 
         while ($store_row = $store_result->fetch_assoc())
         {
-            $result[] = $store_row;
+            $result[] = array("display" => $store_row["store_name"]);
         }
 
         return json_encode($result);

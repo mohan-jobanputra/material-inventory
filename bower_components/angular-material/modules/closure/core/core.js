@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v1.1.1-master-f8fd076
+ * v1.1.3-master-0619e30
  */
 goog.provide('ngmaterial.core');
 
@@ -2646,7 +2646,7 @@ function MdGesture($$MdGestureHandler, $$rAF, $timeout) {
         if (touchActionProperty) {
           // We check for horizontal to be false, because otherwise we would overwrite the default opts.
           this.oldTouchAction = element[0].style[touchActionProperty];
-          element[0].style[touchActionProperty] = options.horizontal === false ? 'pan-y' : 'pan-x';
+          element[0].style[touchActionProperty] = options.horizontal ? 'pan-y' : 'pan-x';
         }
       },
       onCleanup: function(element) {

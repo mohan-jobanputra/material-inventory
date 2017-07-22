@@ -14,6 +14,8 @@ header("Cache-Control: no-cache,no-store");
 //      SALES
 //
 
+
+
 if ($_GET["sender"] == "salesController") {
     $manager = new SaleManager();
     if ($_GET["action"] == "list") {
@@ -160,7 +162,7 @@ if ($_GET["sender"] == "autocompleteController") {
     }
     if ($_GET["info"] == "colors") {
         $manager = new StoreManager();
-        $data = array(array("color" => "Red"), array("color" => "Yellow"), array("color" => "Blue"), array("color" => "Green"), array("color" => "Orange"), array("color" => "Pink"), array("color" => "Brown"), array("color" => "Black"), array("color" => "White"));
+        $data = array(array("display" => "Red"), array("display" => "Yellow"), array("display" => "Blue"), array("display" => "Green"), array("display" => "Orange"), array("display" => "Pink"), array("display" => "Brown"), array("display" => "Black"), array("display" => "White"));
         print(json_encode($data));
     }
 }

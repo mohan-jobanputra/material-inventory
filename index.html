@@ -1,120 +1,122 @@
 <!DOCTYPE html>
-<html>
+<ahtml>
 
 <head>
-  <!-- Stylesheets -->
-  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
-  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
-  <link rel="stylesheet" href="bower_components/backgrid/lib/backgrid.css" />
-  <link rel="stylesheet" href="bower_components/ng-mfb/mfb/dist/mfb.css" />
-  <link rel="stylesheet" href="css/index.css" />
-  <!-- Javascript -->
-  <script src="bower_components/jquery/dist/jquery.js" type="text/javascript"></script>
-  <script src="bower_components/angular/angular.js" type="text/javascript"></script>
-  <script src="bower_components/angular-resource/angular-resource.js" type="text/javascript"></script>
-  <script src="bower_components/angular-aria/angular-aria.js" type="text/javascript"></script>
-  <script src="bower_components/angular-animate/angular-animate.js" type="text/javascript"></script>
-  <script src="bower_components/angular-material/angular-material.js" type="text/javascript"></script>
-  <script src="bower_components/underscore/underscore.js" type="text/javascript"></script>
-  <script src="bower_components/backbone/backbone.js" type="text/javascript"></script>
-  <script src="bower_components/moment/moment.js" type="text/javascript"></script>
-  <script src="bower_components/backgrid/lib/backgrid.js" type="text/javascript"></script>
-  <script src="bower_components/ng-mfb/mfb/dist/mfb.js" type="text/javascript"></script>
-  <script src="bower_components/ng-mfb/src/mfb-directive.js" type="text/javascript"></script>
-  <script src="js/index.js"></script>
-  <script src="js/main-controller.js"></script>
-  <script src="js/new-object-controller.js"></script>
-  <script src="js/input-templates.js"></script>
-  <title>Login</title>
+ <!-- Stylesheets -->
+ <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+ <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+ <link rel="stylesheet" href="bower_components/backgrid/lib/backgrid.css" />
+ <link rel="stylesheet" href="bower_components/ng-mfb/mfb/dist/mfb.css" />
+ <link rel="stylesheet" href="css/index.css" />
+ <!-- Javascript -->
+ <script src="bower_components/jquery/dist/jquery.js" type="text/javascript"></script>
+ <script src="bower_components/angular/angular.js" type="text/javascript"></script>
+ <script src="bower_components/angular-resource/angular-resource.js" type="text/javascript"></script>
+ <script src="bower_components/angular-aria/angular-aria.js" type="text/javascript"></script>
+ <script src="bower_components/angular-animate/angular-animate.js" type="text/javascript"></script>
+ <script src="bower_components/angular-material/angular-material.js" type="text/javascript"></script>
+ <script src="bower_components/underscore/underscore.js" type="text/javascript"></script>
+ <script src="bower_components/backbone/backbone.js" type="text/javascript"></script>
+ <script src="bower_components/moment/moment.js" type="text/javascript"></script>
+ <script src="bower_components/backgrid/lib/backgrid.js" type="text/javascript"></script>
+ <script src="bower_components/ng-mfb/src/mfb-directive.js" type="text/javascript"></script>
+ <script src="js/index.js"></script>
+ <script src="js/main-controller.js"></script>
+ <script src="js/new-object-controller.js"></script>
+ <script src="js/input-templates.js"></script>
+ <title>Login</title>
 </head>
 
 <body ng-app="billingApp" layout="column">
-<div ng-controller="mainController as mCtrl" flex>
+ <div ng-controller="mainController as mCtrl" flex>
 
-<!-- THE LOGIN LAYER -->
-<div class="overlay" ng-init="isLoginLayerHidden=false" ng-hide="isLoginLayerHidden" layout="row" layout-align="center center">
-<div id="login-container">
-<div ng-click="$event.stopPropagation()" class="centered-card-container" flex>
-<md-card class="default-card">
-<md-card-content layout="column">
-  <div flex layout="row" style="margin-bottom: 20%;">
-      <div flex></div>
-      <md-icon md-svg-src="username" style="width: 40%; height: 100%;"></md-icon>
-      <div flex></div>
-  </div>
-  <div style="" flex></div>
-  <form ng-submit="mCtrl.attemptLogin()" name="login" method="post" id="login-form" layout="column">
-    <md-input-container style="margin-top: 0; margin-bottom: 0;">
-      <input type="text" placeholder="Username" name="username" required>
-    </md-input-container>
-    <md-input-container style="margin-top: 0; margin-bottom: 0;">
-      <input type="password" placeholder="Password" name="password" required>
-    </md-input-container>
-    <div layout="row">
-      <md-button class="md-raised md-primary" type="submit" flex>LOGIN</md-button>
+  <!-- THE LOGIN LAYER -->
+  <div class="overlay" ng-init="isLoginLayerHidden=false" ng-hide="isLoginLayerHidden" layout="row" layout-align="center center">
+   <div id="login-container">
+    <div ng-click="$event.stopPropagation()" class="centered-card-container" flex>
+     <md-card class="default-card">
+      <md-card-content layout="column">
+       <div flex layout="row" style="margin-bottom: 20%;">
+        <div flex></div>
+        <md-icon md-svg-src="username" style="width: 40%; height: 100%;"></md-icon>
+        <div flex></div>
+       </div>
+       <div flex></div>
+       <form ng-submit="mCtrl.attemptLogin()" name="login" method="post" id="login-form" layout="column">
+        <md-input-container style="margin-top: 0; margin-bottom: 0;">
+         <input type="text" placeholder="Username" name="username" required>
+        </md-input-container>
+        <md-input-container style="margin-top: 0; margin-bottom: 0;">
+         <input type="password" placeholder="Password" name="password" required>
+        </md-input-container>
+        <div layout="row">
+         <md-button class="md-raised md-primary" type="submit" flex>LOGIN</md-button>
+        </div>
+       </form>
+      </md-card-content>
+     </md-card>
     </div>
-  </form>
-</md-card-content>
-</md-card>
-</div>
-</div>
-</div>
+   </div>
+  </div>
 
-<!-- THE ADMIN DASHBOARD LAYER -->
-<div ng-init="isAdminDashLayerHidden=true" ng-hide="isAdminDashLayerHidden">
-  <md-tabs md-dynamic-height class="md-primary" md-stretch-tabs="always">
-  <md-tab ng-repeat="tab in mCtrl.tabs" md-on-select="mCtrl.setCurrentNewMenuIndex(tab.index)">
-  <md-tab-label>{{tab.label}}</md-tab-label>
-  <md-tab-body>
-  <md-content class="md-padding">
-  <div ng-if="tab.index===6" flex>
-     <h2>Stock Info</h2>
-     <div ng-include src="'input-stock.html'" include-replace></div>
- </div>
- <div id="{{tab.tableId}}"></div>
-</md-content>
-</md-tab-body>
-</md-tab>
-</md-tabs>
-<div id="create-item-overlay" class="overlay" ng-init="isCreateItemOverlayHidden=true" ng-hide="isCreateItemOverlayHidden" ng-click="mCtrl.toggleCreateItemOverlay()" layout="row" layout-align="center center">
-  <div ng-controller="newObjectController as newObjCont" class="centered-card-container">
+  <!-- THE ADMIN DASHBOARD LAYER -->
+  <div ng-init="isAdminDashLayerHidden=true" ng-hide="isAdminDashLayerHidden">
+   <md-tabs md-dynamic-height class="md-primary" md-stretch-tabs="always">
+    <md-tab ng-repeat="tab in mCtrl.tabs" md-on-select="mCtrl.setCurrentNewMenuIndex(tab.index)">
+     <md-tab-label>{{tab.label}}</md-tab-label>
+     <md-tab-body>
+      <md-content class="md-padding">
+       <div ng-if="tab.index===6" flex>
+        <h2>Stock Info</h2>
+        <div src="'input-stock.html'" ng-include include-replace></div>
+       </div>
+       <div id="{{tab.tableId}}"></div>
+      </md-content>
+     </md-tab-body>
+    </md-tab>
+   </md-tabs>
+   <div id="create-item-overlay" class="overlay" ng-init="isCreateItemOverlayHidden=true" ng-hide="isCreateItemOverlayHidden" ng-click="mCtrl.toggleCreateItemOverlay()" layout="row" layout-align="center center">
+    <div ng-controller="newObjectController as newObjCont" class="centered-card-container">
      <div ng-click="$event.stopPropagation()" ng-show="mCtrl.currentNewMenuIndex==={{card.index}}" ng-repeat="card in newObjCont.cards">
-       <md-card class="new-menu-card">
+      <md-card class="new-menu-card">
        <md-card-content>
-       <h2>{{card.header}}</h2>
-       <md-content layout-padding>
-       <form name="{{card.formInfo.name}}" method="post" action="{{card.formInfo.action}}">
-          <md-input-container ng-repeat="info in card.inputsInfo"  layout="row">
-           <md-content layout="row">
-            <md-icon md-svg-src="{{info.icon}}"></md-icon>
-            <div ng-if="info.autocomplete" flex>
-                <div ng-include src="info.template" include-replace></div>
-            </div>
-            <input ng-if="!info.autocomplete" type="{{info.type}}" placeholder="{{info.placeholder}}" name="{{info.name}}" required>
-            </md-content>
-    </md-input-container>
-    <div layout="row">
-     <md-button class="md-raised md-primary" flex>CREATE</md-button>
+        <h2>{{card.header}}</h2>
+        <form ng-submit="mCtrl.createNew(card.formInfo.action, card.formInfo.id)" id="{{card.formInfo.id}}" name="{{card.formInfo.name}}" method="post">
+         <div ng-repeat="info in card.inputsInfo" >
+          <md-input-container ng-if="!info.autocomplete" layout="row">
+           <md-icon md-svg-src="{{info.icon}}"></md-icon>
+           <input type="{{info.type}}" placeholder="{{info.placeholder}}" name="{{info.name}}" required>
+          </md-input-container>
+          <div ng-if="info.autocomplete" layout="row">
+           <md-autocomplete md-icon="{{info.icon}}" class="autocomplete-input" flex required md-require-match md-input-name="{{info.name}}" md-input-minlength="2" md-autoselect="true"  md-search-text="searchText" md-items="item in mCtrl.querySearch(info.search_key)" md-item-text="item.display.toString()" ng-attr-md-floating-label="{{info.placeholder}}">
+            <span ng-attr-md-highlight-text="searchText">{{item.display}}</span>
+           </md-autocomplete>
+          </div>
+         </div>
+         <div layout="row">
+          <div flex></div>
+          <md-button class="md-raised md-primary" type="submit">CREATE</md-button>
+          <div flex></div>
+         </div>
+        </form>
+       </md-card-content>
+      </md-card>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <!-- THE ADMIN DASHBOARD LAYER -->
+  <div ng-init="isRepresentativeDashLayerHidden=true" ng-hide="isAdminDashLayerHidden">
+  </div>
+
+  <!-- THE FLOATING BUTTON LAYER -->
+  <div id="floating-button-container" ng-init="isActionButtonHidden=true" ng-hide="isActionButtonHidden">
+    <md-button aria-label="Create New" ng-click="mCtrl.createNewItem(currentNewMenuIndex)" class="floatng-button md-primary md-fab-bottom-right md-fab md-raised">
+      <md-icon md-svg-src="add"></md-icon>
+    </md-button>
+   </nav>
+  </div>
  </div>
-</form>
-</md-content>
-</md-card-content>
-</md-card>
-</div>
-</div>
-</div>
-</div>
-
-<!-- THE ADMIN DASHBOARD LAYER -->
-<div ng-init="isRepresentativeDashLayerHidden=true" ng-hide="isAdminDashLayerHidden">
-
-</div>
-
-<!-- THE FLOATING BUTTON LAYER -->
-<div id="floating-button-container" ng-init="showActionButton=false" ng-show="showActionButton">
-  <nav mfb-menu main-action="mCtrl.createNewItem(currentNewMenuIndex)" position="br" active-icon="add" resting-icon="add" data-mfb-toggle="click" template-url="ng-mfb-menu-md.tpl.html">
-  </nav>
-</div>
-</div>
 </body>
 </html>

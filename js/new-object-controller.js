@@ -6,18 +6,29 @@ billingApp.controller('newObjectController', function() {
         formInfo: {
             name: "purchaseForm",
             action: "php/gateway.php?sender=purchasesController&action=create",
+            id: "purchaseForm",
         },
-        inputsInfo: [{
+        inputsInfo: [
+        {
+            icon: "store_name",
+            placeholder: "Store Name",
+            search_key: "stores",
+            name: "store-name",
+            template: "input-store.html",
+            search_key: "stores",
+            autocomplete: true
+        }, {
             icon: "product_name",
             placeholder: "Product",
             name: "product-name",
-            template: 'input-product.html',
+            search_key: "products",
+            template: "input-product.html",
             autocomplete: true
         }, {
             icon: "color",
             placeholder: "Color",
+            search_key: "colors",
             name: "product-color",
-            template: 'input-color.html',
             autocomplete: true
         }, {
             icon: "quantity",
@@ -44,6 +55,7 @@ billingApp.controller('newObjectController', function() {
         formInfo: {
             name: "saleForm",
             action: "php/gateway.php?sender=salesController&action=create",
+            id: "saleForm",
         },
         inputsInfo: [{
             icon: "person",
@@ -54,22 +66,24 @@ billingApp.controller('newObjectController', function() {
         }, {
             icon: "store_name",
             placeholder: "Store Name",
+            search_key: "stores",
             name: "store-name",
             template: "input-store.html",
+            search_key: "stores",
             autocomplete: true
         }, {
             icon: "product_name",
             type: "text",
             placeholder: "Product",
+            search_key: "products",
             name: "product-name",
-            template: 'input-product.html',
             autocomplete: true
         }, {
             icon: "color",
             type: "text",
             placeholder: "Color",
+            search_key: "colors",
             name: "product-color",
-            template: 'input-color.html',
             autocomplete: true
         }, {
             icon: "quantity",
@@ -102,25 +116,27 @@ billingApp.controller('newObjectController', function() {
         formInfo: {
             name: "transferForm",
             action: "php/gateway.php?sender=transfersController&action=create",
+            id: "transferForm",
         },
         inputsInfo: [{
             icon: "product_name",
             type: "text",
             placeholder: "Product Name",
+            search_key: "products",
             name: "product-name",
-            template: 'input-product.html',
             autocomplete: true
         }, {
             icon: "color",
             type: "text",
             placeholder: "Color",
+            search_key: "colors",
             name: "product-color",
-            template: 'input-color.html',
             autocomplete: true
         }, {
             icon: "store_name",
             type: "text",
             placeholder: "From Store",
+            search_key: "stores",
             name: "from-store",
             template: "input-store.html",
             autocomplete: true
@@ -128,6 +144,7 @@ billingApp.controller('newObjectController', function() {
             icon: "store_name",
             type: "text",
             placeholder: "To Store",
+            search_key: "stores",
             name: "to-store",
             template: "input-store.html",
             autocomplete: true
@@ -150,21 +167,28 @@ billingApp.controller('newObjectController', function() {
         formInfo: {
             name: "productForm",
             action: "php/gateway.php?sender=productsController&action=create",
+            id: "productForm",
         },
         inputsInfo: [{
             icon: "product_name",
             type: "text",
             placeholder: "Product Name",
+            search_key: "products",
             name: "product-name",
-            template: 'input-product.html',
-            autocomplete: true
+            autocomplete: false
         }, {
             icon: "color",
             type: "text",
             placeholder: "Color",
+            search_key: "colors",
             name: "product-color",
-            template: 'input-color.html',
             autocomplete: true
+        }, {
+            icon: "selling_price",
+            type: "currency",
+            placeholder: "Optimal Selling Price",
+            name: "optimal-selling-price",
+            autocomplete: false
         }]
     }, {
         index: 5,
@@ -172,11 +196,13 @@ billingApp.controller('newObjectController', function() {
         formInfo: {
             name: "storeForm",
             action: "php/gateway.php?sender=storesController&action=create",
+            id: "storeForm",
         },
         inputsInfo: [{
             icon: "store_name",
             type: "text",
             placeholder: "Store Name",
+            search_key: "stores",
             name: "store-name",
             autocomplete: false
         }, {

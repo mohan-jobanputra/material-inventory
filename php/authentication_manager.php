@@ -1,15 +1,9 @@
 <?php
 
-	require_once('ulogin/ulogin/config/all.inc.php');
-	require_once('ulogin/ulogin/main.inc.php');
 	require_once('definitions.php');
-
-	if (!sses_running())
-	sses_start();
 
 	class AuthenticationManager
 	{
-		public $var1 = 1;
 		function isAppLoggedIn()
 		{
 			print "authentication_manager.php:14: isAppLogin Function is untested. Expect errors/warnings/malfunction.";
@@ -26,15 +20,8 @@
 
 		function authenticate($username, $password)
 		{
-			$ulogin = new ulogin()
-			$ulogin->Authenticate($username, $password);
-			if ($ulogin->IsAuthSuccess()) {
-				$returnArray = array('did_authenticate' => true );
-				return json_encode($returnArray);
-			} else {
-				$returnArray = array('did_authenticate' => false );
-				return json_encode($returnArray);
-			}
+			$returnArray = array('did_authenticate' => true, 'is_administrator' => true );
+			return json_encode($returnArray);
 		}
 
 		function appLogin($uid, $username, $ulogin)

@@ -93,7 +93,7 @@ Class ProductManager
 
         while ($product_row = $product_result->fetch_assoc())
         {
-            $result[] = $product_row;
+            $result[] = array("display" => $product_row["product"]);
         }
 
         return json_encode($result);

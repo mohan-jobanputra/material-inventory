@@ -2,7 +2,7 @@
  * Angular Material Design
  * https://github.com/angular/material
  * @license MIT
- * v1.1.1-master-f8fd076
+ * v1.1.3-master-0619e30
  */
 (function( window, angular, undefined ){
 "use strict";
@@ -94,6 +94,8 @@ function getDirective(name) {
   function DirectiveFactory($parse) {
       return { restrict: 'A', link: postLink };
       function postLink(scope, element, attr) {
+        element.css('touch-action', 'none');
+
         var fn = $parse(attr[directiveName]);
         element.on(eventName, function(ev) {
           scope.$applyAsync(function() { fn(scope, { $event: ev }); });

@@ -39,6 +39,17 @@
     text-align: center;
 }
 
+/*color: rgb(63,81,181)*/
+.autocomplete-input > md-autocomplete-wrap > md-input-container {
+    margin-top: 18px;
+    margin-bottom: 0px;
+}
+
+.autocomplete-input .md-errors-spacer {
+    min-height: 0px;
+    height: 0px;
+}
+
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px white inset;
 }
